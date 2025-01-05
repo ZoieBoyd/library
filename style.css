@@ -1,0 +1,56 @@
+:root {
+    --black: #242124ff;
+    --white: #fbf8f5ff;
+    --light-gray: #eee6dbff;
+    --red: #ed5e63ff;
+    /*
+    --blue: #2f4f6bff;
+    --green: #6eb072ff;
+    --purple: #8b7fb5ff;
+    */
+}
+
+body {
+    background-color: var(--white);
+}
+
+.books-container {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 0vw;
+}
+
+.book-card {
+    text-align: center;
+    align-content: center;
+    color: var(--white);
+    width: 16vw;
+    height: 45vh;
+    justify-items: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.book-card-content {
+    position: relative;
+    top: -3rem;
+    left: 0.5rem;
+    padding: 3rem;
+}
+
+.book-card:nth-child(4n + 1) {
+    background-image: url(images/red-book.png);
+}
+
+.book-card:nth-child(4n + 2) {
+    background-image: url(images/blue-book.png);
+}
+
+.book-card:nth-child(4n + 3) {
+    background-image: url(images/green-book.png);
+}
+
+.book-card:nth-child(4n + 4) {
+    background-image: url(images/purple-book.png);
+}
