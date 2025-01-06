@@ -1,3 +1,30 @@
+@font-face {
+    font-family: 'roboto';
+    src: url('fonts/roboto-medium-webfont.woff2') format('woff2'),
+         url('fonts/roboto-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'quicksand';
+    src: url('fonts/quicksand-variablefont_wght-webfont.woff2') format('woff2'),
+         url('fonts/quicksand-variablefont_wght-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'patrickHandSC';
+    src: url('fonts/patrickhandsc-regular-webfont.woff2') format('woff2'),
+         url('fonts/patrickhandsc-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 :root {
     --black: #242124ff;
     --white: #fbf8f5ff;
@@ -11,32 +38,65 @@
 }
 
 body {
+    margin: 0;
     background-color: var(--white);
+}
+
+.container{
+    display: grid;
+    gap: 2rem;
+}
+
+.header {
+    display: flex;
+    padding-left: 7vw;
+    gap: 0.8rem;
+    background-color: var(--light-gray);
+}
+
+.header img {
+    width: 46px;
+}
+
+.header h1{
+    font-family: "patrickHandSC";
 }
 
 .books-container {
     display: grid;
-    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    column-gap: 6rem;
+    row-gap: 3brarrem;
     justify-content: start;
-    gap: 0vw;
+    justify-self: center;
+    max-width:65%;
+    padding: 50px;
 }
 
 .book-card {
-    text-align: center;
-    align-content: center;
-    color: var(--white);
-    width: 16vw;
-    height: 45vh;
-    justify-items: center;
+    display: flex;
+    color: white;
+    aspect-ratio: 7 / 10;
+    width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    overflow: hidden;
 }
 
 .book-card-content {
     position: relative;
-    top: -3rem;
     left: 0.5rem;
     padding: 3rem;
+}
+
+.book-card-content h1, .book-card-content h2 {
+    font-family: "quicksand";
+}
+
+.book-card-content p {
+    font-family: "roboto";
 }
 
 .book-card:nth-child(4n + 1) {
@@ -53,4 +113,31 @@ body {
 
 .book-card:nth-child(4n + 4) {
     background-image: url(images/purple-book.png);
+}
+
+#new-book-btn {
+    width: 130px;
+    height: 130px;
+    position:fixed;
+    right: 3rem;
+    bottom: 3rem;
+    border-radius: 50%;
+    border: none;
+    background: url(images/add-button.svg);
+    background-size: cover;
+}
+
+dialog {
+    border-radius: 15px;
+    border: none;
+    padding: 0;
+    font-family: "roboto";
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal-heading {
+    background-color:var(--light-gray);
 }

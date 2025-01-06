@@ -1,4 +1,7 @@
 const container = document.querySelector(".books-container");
+const newBookBtn = document.querySelector("#new-book-btn");
+const dialog = document.querySelector("dialog");
+const closeDialogBtn = document.querySelector("#close-btn");
 
 const myLibrary = [];
 
@@ -36,6 +39,14 @@ function displayAllBooks() {
         createBookCard(book);
     }
 }
+
+newBookBtn.addEventListener("click", () => {
+    dialog.showModal();
+});
+
+closeDialogBtn.addEventListener("click", () => {
+    dialog.close();
+});
 
 addBookToLibrary(new Book("The Hobbit", "J.R.R. Tolkien", 310, false));
 addBookToLibrary(new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 223, true));
