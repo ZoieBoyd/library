@@ -22,19 +22,12 @@
          url('fonts/patrickhandsc-regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 :root {
     --black: #242124ff;
     --white: #fbf8f5ff;
     --light-gray: #eee6dbff;
-    --red: #ed5e63ff;
-    /*
-    --blue: #2f4f6bff;
-    --green: #6eb072ff;
-    --purple: #8b7fb5ff;
-    */
 }
 
 body {
@@ -52,22 +45,20 @@ body {
     padding-left: 7vw;
     gap: 0.8rem;
     background-color: var(--light-gray);
+    font-family: "patrickHandSC";
+    color: var(--black);
+    box-shadow: rgba(50, 50, 93, 0.11) 0px 2px 5px -1px, rgba(0, 0, 0, 0.192) 0px 1px 3px -1px;
 }
 
 .header img {
     width: 46px;
 }
 
-.header h1{
-    font-family: "patrickHandSC";
-}
-
 .books-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, 300px);
     column-gap: 6rem;
-    row-gap: 3brarrem;
-    justify-content: start;
+    row-gap: 3rem;
     justify-self: center;
     max-width:65%;
     padding: 50px;
@@ -75,20 +66,61 @@ body {
 
 .book-card {
     display: flex;
-    color: white;
+    color: var(--white);
     aspect-ratio: 7 / 10;
     width: 100%;
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    text-align: center;
     overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0 0 1rem rgba(59, 59, 59, 0.3));
 }
 
 .book-card-content {
+    display: grid;
+    grid-template: repeat(6, minmax(0, 1fr)) / repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+    ". ."
+    "title title"
+    "title title"
+    ". ."
+    "pages pages"
+    "read delete";
+    text-align: center;
+    text-wrap: balance;
+    justify-items: center;
+    align-items: center;
     position: relative;
-    left: 0.5rem;
-    padding: 3rem;
+    height: 65%;
+    width: 60%;
+    top: -3.5rem;
+    left: 1rem;
+    padding: 3.2rem;
+}
+
+.title-container {
+    display: flex;
+    flex-direction: column;
+    grid-area: title;
+}
+
+.title-container h1 {
+    font-size: calc(20px + 0.5vw);
+}
+
+.title-container h2 {
+    font-size: calc(12px + 0.5vw);
+}
+
+.title-container h1, .title-container h2 {
+    margin: 0.2em;
+}
+
+.book-card-content p {
+    font-size: 0.9rem;
+    grid-area: pages;
 }
 
 .book-card-content h1, .book-card-content h2 {
@@ -97,6 +129,37 @@ body {
 
 .book-card-content p {
     font-family: "roboto";
+}
+
+.read-checkbox {
+    grid-area: read;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 2px solid white;
+}
+
+.read-checkbox:checked {
+    appearance: auto;
+    clip-path: circle(50% at 50% 50%);
+    accent-color: #27792f;
+}
+
+.delete-btn {
+    grid-area: delete;
+    border: none;
+    background: url(images/delete-button.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 30%;
+    aspect-ratio: 14/18;
+}
+
+.delete-btn:hover {
+    filter: brightness(0.8);
 }
 
 .book-card:nth-child(4n + 1) {
@@ -140,4 +203,13 @@ dialog::backdrop {
 
 .modal-heading {
     background-color:var(--light-gray);
+}
+
+@media only screen and (max-width: 1000px) {
+    .books-container {
+        max-width: 90%;
+    }
+    #new-book-btn {
+        display: none;
+    }
 }
