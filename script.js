@@ -12,22 +12,20 @@ function Book(title, author, pages, hasRead) {
     this.hasRead = hasRead;
 }
 
-const myLibrary = [
-    new Book("The Hobbit", "J.R.R. Tolkien", 310, false),
-    new Book("Pride and Prejudice", "Jane Austen", 376, true),
-    new Book("To Kill a Mockingbird", "Harper Lee", 281, false),
-];
-
-function addBookToLibrary(book) {
-    myLibrary.push(book);
+Book.prototype.toggleReadStatus = function() {
+    this.hasRead = !this.hasRead;
 }
 
-function deleteBook(book) {
-    myLibrary.splice(myLibrary.indexOf(book), 1);
+Book.prototype.deleteBook = function() {
+    myLibrary.splice(myLibrary.indexOf(this), 1);
     displayAllBooks();
 }
 
-function createBookCard(book) {
+Book.prototype.addBookToLibrary = function() {
+    myLibrary.push(this);
+}
+
+Book.prototype.createBookCard = function() {
     const card = document.createElement("div");
     const content = document.createElement("div");
     const titleContainer = document.createElement("div");
@@ -44,10 +42,10 @@ function createBookCard(book) {
     readCheckbox.classList.add("read-checkbox");
     deleteBtn.classList.add("delete-btn");
     
-    title.textContent = book.title;
-    author.textContent = book.author;
-    pages.textContent = `${book.pages} pages`;
-    readCheckbox.checked = book.hasRead;
+    title.textContent = this.title;
+    author.textContent = this.author;
+    pages.textContent = `${this.pages} pages`;
+    readCheckbox.checked = this.hasRead;
 
     titleContainer.appendChild(title);
     titleContainer.appendChild(author);
@@ -59,18 +57,24 @@ function createBookCard(book) {
     container.appendChild(card);
 
     readCheckbox.addEventListener("click", () => {
-        book.hasRead = !book.hasRead;
+        this.toggleReadStatus();
     });
 
     deleteBtn.addEventListener("click", () => {
-        deleteBook(book);
+        this.deleteBook();
     });
 }
 
+const myLibrary = [
+    new Book("The Hobbit", "J.R.R. Tolkien", 310, false),
+    new Book("Pride and Prejudice", "Jane Austen", 376, true),
+    new Book("To Kill a Mockingbird", "Harper Lee", 281, false),
+];
+
 function displayAllBooks() {
-    container.innerHTML = "";
+    container.replaceChildren();
     for(const book of myLibrary) {
-        createBookCard(book);
+        book.createBookCard();
     }
 }
 
@@ -79,6 +83,7 @@ newBookBtn.addEventListener("click", () => {
 });
 
 submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
     const titleInput = document.getElementById("title-input").value;
     const authorInput = document.getElementById("author-input").value;
     const pagesInput = document.getElementById("pages-input").value;
@@ -89,7 +94,7 @@ submitBtn.addEventListener("click", (event) => {
         return;
     }
     
-    addBookToLibrary(new Book(titleInput, authorInput, pagesInput, readInput));
+    new Book(titleInput, authorInput, pagesInput, readInput).addBookToLibrary();
     dialog.close();
     form.reset();
     displayAllBooks();
