@@ -10,37 +10,42 @@
 <body>
     <div class="container">
         <div class="header">
-            <img src="images/logo.svg">
-            <h1>the book vault</h1>
+            <div class="header-title">
+                <img src="images/logo.svg">
+                <h1>the book vault</h1>
+            </div>
+            <button class="new-book-btn" id="new-book-btn-small"></button>
         </div>
         <div class="books-container"></div>
         <dialog>
-            <div class="modal-heading">
-                <h2>Add new book</h2>
-                <button id="close-btn">Close</button>
+            <div class="modal-content">
+                <div class="modal-heading">
+                    <button id="close-btn"></button>
+                    <h2>Add new book</h2>
+                </div>
+                <form novalidate action="submit">
+                    <p class="form-input-field">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" id="title-input">
+                    </p>
+                    <p class="form-input-field">
+                        <label for="author">Author</label>
+                        <input type="text" name="author" id="author-input">
+                    </p>
+                    <p class="form-input-field">
+                        <label for="pages">Pages</label>
+                        <input type="number" name="pages" id="pages-input">
+                    </p>
+                    <p class="form-checkbox-field">
+                        <label for="read">Read</label>
+                        <input type="checkbox" name="read" id="read-input">
+                    </p>
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
             </div>
-            <form novalidate action="submit">
-                <p>
-                    <label for="title">Title</label>
-                    <input type="text" name="title" id="title-input">
-                </p>
-                <p>
-                    <label for="author">Author</label>
-                    <input type="text" name="author" id="author-input">
-                </p>
-                <p>
-                    <label for="pages">Pages</label>
-                    <input type="number" name="pages" id="pages-input">
-                </p>
-                <p>
-                    <label for="read">Read</label>
-                    <input type="checkbox" name="read" id="read-input">
-                </p>
-                <button type="submit" id="submit-btn">Submit</button>
-            </form>
         </dialog>
     </div>
-    <button type="button" id="new-book-btn"></button>
+    <button type="button" class="new-book-btn" id="new-book-btn-large"></button>
     <script src="script.js"></script>  
 </body>
 </html>

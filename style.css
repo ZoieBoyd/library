@@ -28,6 +28,8 @@
     --black: #242124ff;
     --white: #fbf8f5ff;
     --light-gray: #eee6dbff;
+    --gray: rgb(196, 190, 182);
+    --red: #ed5e63ff;
 }
 
 body {
@@ -42,12 +44,18 @@ body {
 
 .header {
     display: flex;
-    padding-left: 7vw;
-    gap: 0.8rem;
+    justify-content: space-between;
+    padding: 0 7vw;
     background-color: var(--light-gray);
+    box-shadow: rgba(50, 50, 93, 0.11) 0px 2px 5px -1px, rgba(0, 0, 0, 0.192) 0px 1px 3px -1px;
+    align-items: center;
+}
+
+.header-title {
+    display: flex;
+    gap: 0.8rem;
     font-family: "patrickHandSC";
     color: var(--black);
-    box-shadow: rgba(50, 50, 93, 0.11) 0px 2px 5px -1px, rgba(0, 0, 0, 0.192) 0px 1px 3px -1px;
 }
 
 .header img {
@@ -178,19 +186,30 @@ body {
     background-image: url(images/purple-book.png);
 }
 
-#new-book-btn {
+.new-book-btn {
+    background: url(images/add-button.svg);
+    background-size: cover;
+    border-radius: 50%;
+    width: 4rem;
+    height: 4rem;
+    border: none;
+}
+
+#new-book-btn-small {
+    display: none;
+}
+
+#new-book-btn-large {
     width: 130px;
     height: 130px;
     position:fixed;
     right: 3rem;
     bottom: 3rem;
-    border-radius: 50%;
-    border: none;
-    background: url(images/add-button.svg);
-    background-size: cover;
 }
 
 dialog {
+    width: 320px;
+    height: 510px;
     border-radius: 15px;
     border: none;
     padding: 0;
@@ -201,15 +220,91 @@ dialog::backdrop {
     background-color: rgba(0, 0, 0, 0.6);
 }
 
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    color: var(--black)
+}
+
 .modal-heading {
+    display: flex;
+    flex-direction: column;
     background-color:var(--light-gray);
 }
 
-@media only screen and (max-width: 1000px) {
+.modal-heading h2 {
+    align-self: center;
+}
+
+#close-btn {
+    align-self: flex-end;
+    background: url(images/close-button.svg);
+    background-size: cover;
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    border-radius: 50%;
+}
+
+form {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-input-field {
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    margin-bottom: 0.3rem;
+}
+
+.form-input-field input {
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    height: 35px;
+    font-size: 1.2rem;
+}
+
+.form-checkbox-field {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+}
+
+#read-input {
+    width: 20px;
+    height: 20px;
+    accent-color: green;
+}
+
+#submit-btn {
+    align-self: center;
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    height: 2.5rem;
+    width: 6rem;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+@media only screen and (max-width: 1050px) {
     .books-container {
         max-width: 90%;
     }
-    #new-book-btn {
+}
+
+/* The new book button appears in the page's header on smaller 
+screens to prevent it from overlapping the page content*/
+@media only screen and (max-width: 995px) {
+    #new-book-btn-small {
+        display: inline;
+    }
+
+    #new-book-btn-large {
         display: none;
     }
 }

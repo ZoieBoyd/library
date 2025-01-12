@@ -1,5 +1,5 @@
 const container = document.querySelector(".books-container");
-const newBookBtn = document.querySelector("#new-book-btn");
+const newBookBtns = document.querySelectorAll(".new-book-btn");
 const dialog = document.querySelector("dialog");
 const closeDialogBtn = document.querySelector("#close-btn");
 const submitBtn = document.querySelector("#submit-btn");
@@ -78,9 +78,11 @@ function displayAllBooks() {
     }
 }
 
-newBookBtn.addEventListener("click", () => {
-    dialog.showModal();
-});
+newBookBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+        dialog.showModal();
+    });
+})
 
 submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
