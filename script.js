@@ -5,64 +5,66 @@ const closeDialogBtn = document.querySelector("#close-btn");
 const submitBtn = document.querySelector("#submit-btn");
 const form = document.querySelector("form");
 
-function Book(title, author, pages, hasRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = hasRead;
-}
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;
+    }
 
-Book.prototype.toggleReadStatus = function() {
-    this.hasRead = !this.hasRead;
-}
+    toggleReadStatus() {
+        this.hasRead = !this.hasRead;
+    }
 
-Book.prototype.deleteBook = function() {
-    myLibrary.splice(myLibrary.indexOf(this), 1);
-    displayAllBooks();
-}
+    deleteBook() {
+        myLibrary.splice(myLibrary.indexOf(this), 1);
+        displayAllBooks();
+    }
 
-Book.prototype.addBookToLibrary = function() {
-    myLibrary.push(this);
-}
+    addBookToLibrary() {
+        myLibrary.push(this);
+    }
 
-Book.prototype.createBookCard = function() {
-    const card = document.createElement("div");
-    const content = document.createElement("div");
-    const titleContainer = document.createElement("div");
-    const title = document.createElement("h1");
-    const author = document.createElement("h2");
-    const pages = document.createElement("p");
-    const readCheckbox = document.createElement("input");
-    const deleteBtn = document.createElement("button");
-
-    readCheckbox.type = "checkbox";
-    card.classList.add("book-card");
-    content.classList.add("book-card-content");
-    titleContainer.classList.add("title-container");
-    readCheckbox.classList.add("read-checkbox");
-    deleteBtn.classList.add("delete-btn");
-    
-    title.textContent = this.title;
-    author.textContent = this.author;
-    pages.textContent = `${this.pages} pages`;
-    readCheckbox.checked = this.hasRead;
-
-    titleContainer.appendChild(title);
-    titleContainer.appendChild(author);
-    content.appendChild(titleContainer);
-    content.appendChild(pages);
-    content.appendChild(readCheckbox);
-    content.appendChild(deleteBtn);
-    card.appendChild(content);
-    container.appendChild(card);
-
-    readCheckbox.addEventListener("click", () => {
-        this.toggleReadStatus();
-    });
-
-    deleteBtn.addEventListener("click", () => {
-        this.deleteBook();
-    });
+    createBookCard() {
+        const card = document.createElement("div");
+        const content = document.createElement("div");
+        const titleContainer = document.createElement("div");
+        const title = document.createElement("h1");
+        const author = document.createElement("h2");
+        const pages = document.createElement("p");
+        const readCheckbox = document.createElement("input");
+        const deleteBtn = document.createElement("button");
+        
+        readCheckbox.type = "checkbox";
+        card.classList.add("book-card");
+        content.classList.add("book-card-content");
+        titleContainer.classList.add("title-container");
+        readCheckbox.classList.add("read-checkbox");
+        deleteBtn.classList.add("delete-btn");
+        
+        title.textContent = this.title;
+        author.textContent = this.author;
+        pages.textContent = `${this.pages} pages`;
+        readCheckbox.checked = this.hasRead;
+        
+        titleContainer.appendChild(title);
+        titleContainer.appendChild(author);
+        content.appendChild(titleContainer);
+        content.appendChild(pages);
+        content.appendChild(readCheckbox);
+        content.appendChild(deleteBtn);
+        card.appendChild(content);
+        container.appendChild(card);
+        
+        readCheckbox.addEventListener("click", () => {
+            this.toggleReadStatus();
+        });
+        
+        deleteBtn.addEventListener("click", () => {
+            this.deleteBook();
+        });
+    }
 }
 
 const myLibrary = [

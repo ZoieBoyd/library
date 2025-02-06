@@ -4,7 +4,6 @@
          url('fonts/roboto-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -13,7 +12,6 @@
          url('fonts/quicksand-variablefont_wght-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-
 }
 
 @font-face {
@@ -28,7 +26,7 @@
     --black: #242124ff;
     --white: #fbf8f5ff;
     --light-gray: #eee6dbff;
-    --gray: rgb(196, 190, 182);
+    --gray: #c4beb6;
     --red: #ed5e63ff;
 }
 
